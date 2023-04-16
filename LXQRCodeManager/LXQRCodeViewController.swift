@@ -101,7 +101,7 @@ open class LXQRCodeViewController: UIViewController {
         switch status {
         case .restricted,.denied:
             DispatchQueue.main.async { [weak self] in
-                self?.callBack?(.error("请在手机的设置>隐私>相机中开启的相机访问权限"))
+                self?.callBack?(.error("Please go to iPhone‘s Setting>Privacy>Enable Camera access"))
             }
         case .authorized:
             DispatchQueue.main.async {
@@ -260,11 +260,11 @@ extension LXQRCodeViewController: UIImagePickerControllerDelegate , UINavigation
     ///点击使用图片, 使用该图片
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true, completion: nil)
-        guard let image = info[.originalImage] as? UIImage else {             callBack?(.error("选择图片失败"))
+        guard let image = info[.originalImage] as? UIImage else {             callBack?(.error("Fail to select photo"))
             return
         }
         guard let qrCodeStr = LXQRCode.qrCodeString(with: image) else {
-            callBack?(.error("二维码识别失败"))
+            callBack?(.error("QR code recognition failed"))
             return
         }
         
@@ -294,9 +294,9 @@ extension LXQRCodeViewController: LXQRCodeViewDelegate {
                 picker.modalPresentationStyle = .fullScreen
                 present(picker, animated: true, completion: nil)
             }else{
-                let msg = "打开相册失败,请在手机设置中打开相册权限"
+                let msg = "Failed to open the album, please open the photo album permission in the phone settings"
                 let alertController = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "确定", style: .default, handler: nil))
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 alertController.modalPresentationStyle = .fullScreen
                 present(alertController, animated: true, completion: nil)
             }

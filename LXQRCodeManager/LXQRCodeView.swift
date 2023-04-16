@@ -38,9 +38,9 @@ public class LXQRCodeView: UIView {
     public lazy var cancelBtn: UIButton = {
        let cancelBtn = UIButton(type: UIButton.ButtonType.custom)
        cancelBtn.frame = CGRect(x:LXFit.fitFloat(8), y: LXQRCodeConst.statusbarH, width: LXFit.fitFloat(52), height: 44)
-       cancelBtn.setTitle("取消", for: UIControl.State.normal)
+       cancelBtn.setTitle("cancel", for: UIControl.State.normal)
        cancelBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
-       cancelBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15).fitFont
+       cancelBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14).fitFont
        cancelBtn.addTarget(self, action: #selector(cancelBtnClick), for: UIControl.Event.touchUpInside)
         return cancelBtn
     }()
@@ -48,10 +48,10 @@ public class LXQRCodeView: UIView {
      ///标题
     public lazy var titleL: UILabel = {
         let titleL = UILabel(frame: CGRect(x: cancelBtn.frame.maxX, y: LXQRCodeConst.statusbarH, width: LXQRCodeConst.screenW - cancelBtn.frame.maxX * 2, height: 44))
-        titleL.text = "二维码"
+        titleL.text = "QR code"
         titleL.textColor = UIColor.white
         titleL.textAlignment = .center
-        titleL.font = UIFont(name: "PingFangSC-Medium", size: 18)?.fitFont
+        titleL.font = UIFont(name: "PingFangSC-Medium", size: 16)?.fitFont
         return titleL
     }()
     
@@ -59,9 +59,9 @@ public class LXQRCodeView: UIView {
     public lazy var albumBtn: UIButton = {
         let albumBtn = UIButton(type: UIButton.ButtonType.custom)
         albumBtn.frame = CGRect(x:titleL.frame.maxX, y: LXQRCodeConst.statusbarH, width: LXFit.fitFloat(52), height: 44)
-        albumBtn.setTitle("相册", for: UIControl.State.normal)
+        albumBtn.setTitle("Album", for: UIControl.State.normal)
         albumBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
-        albumBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15).fitFont
+        albumBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14).fitFont
         albumBtn.addTarget(self, action: #selector(albumBtnClick), for: UIControl.Event.touchUpInside)
          return albumBtn
     }()
@@ -103,8 +103,7 @@ public class LXQRCodeView: UIView {
         flashlightBtn.addTarget(self, action: #selector(flashlightBtnClick(_:)), for:.touchUpInside)
         flashlightBtn.setImage(UIImage(contentsOfFile: Bundle(for: type(of: self)).path(forResource: "LXQRCode", ofType: "bundle")! + "/lxtorchQR.png"), for: UIControl.State.normal)
         flashlightBtn.setImage(UIImage(contentsOfFile: Bundle(for: type(of: self)).path(forResource: "LXQRCode", ofType: "bundle")! + "/lxtorchQRSelected.png"), for: UIControl.State.selected)
-
-        flashlightBtn.setTitle("轻触照亮", for: .normal)
+//        flashlightBtn.setTitle("轻触照亮", for: .normal)
         return flashlightBtn
         
     }()
