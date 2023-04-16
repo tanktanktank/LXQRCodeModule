@@ -62,7 +62,9 @@ open class LXQRCodeViewController: UIViewController {
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !captureSession.isRunning {
-            captureSession.startRunning()
+            DispatchQueue.global(qos: .background).async {
+                self.captureSession.startRunning()
+            }
             qrCodeView.setTimer()
         }
      }
@@ -78,7 +80,10 @@ open class LXQRCodeViewController: UIViewController {
 
           // 设置相机权限
           getCameraAuthorizationStatus()
-          self.captureSession.startRunning()
+        DispatchQueue.global(qos: .background).async {
+            self.captureSession.startRunning()
+        }
+
     }
     
      /***************继承用到*************/
